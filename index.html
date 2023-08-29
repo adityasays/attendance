@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>College Attendance Tracking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    main {
+      padding: 20px;
+    }
+    
+    .form-container {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .attendance-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .attendance-table th,
+    .attendance-table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    
+    .attendance-table th {
+      background-color: #f2f2f2;
+    }
+    
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>College Attendance Tracking</h1>
+  </header>
+  <main>
+    <div class="form-container">
+      <h2>Mark Attendance</h2>
+      <label for="studentId">Student ID:</label>
+      <input type="text" id="studentId" placeholder="Enter Student ID">
+      <button onclick="markAttendance()">Mark Attendance</button>
+    </div>
+    <div class="attendance-table">
+      <h2>Attendance Records</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Student ID</th>
+            <th>Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="attendanceTableBody">
+          <!-- Attendance records are  dynamically added here -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <script>
+    const attendanceTableBody = document.getElementById("attendanceTableBody");
+
+    function markAttendance() {
+      const studentIdInput = document.getElementById("studentId");
+      const studentId = studentIdInput.value;
+      const currentDate = new Date().toLocaleDateString();
+
+      if (studentId.trim() === "") {
+        alert("Please enter a valid Student ID.");
+        return;
+      }
+
+      const newRow = document.createElement("tr");
+      newRow.innerHTML = `
+        <td>${studentId}</td>
+        <td>${currentDate}</td>
+        <td>Present</td>
+      `;
+
+      attendanceTableBody.appendChild(newRow);
+      studentIdInput.value = "";
+    }
+  </script>
+</body>
+</html>
